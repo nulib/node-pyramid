@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo $@
+/usr/local/bin/node ./index.js $@
