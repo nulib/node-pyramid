@@ -12,7 +12,7 @@ const queueUrl = process.env.queueUrl;
 console.log(`Processing messages from ${queueUrl}`);
 const app = Consumer.create({
   queueUrl: queueUrl,
-  waitTimeSeconds: process.env.waitTimeSeconds || 5,
+  waitTimeSeconds: Number(process.env.waitTimeSeconds) || 5,
   handleMessage: async (message) => {
     var params = JSON.parse(message.Body);
     console.log(`createPyramidTiff: [begin] ${params.source} -> ${params.target}`);

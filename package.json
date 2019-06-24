@@ -7,9 +7,9 @@
   "license": "Apache2",
   "dependencies": {
     "aws-sdk": "^2.394.0",
-    "node-fetch": "^2.3.0",
     "sharp": "^0.22.1",
     "sqs-consumer": "^4.0.0",
+    "tempy": "^0.3.0",
     "uri-js": "^4.2.2"
   }
 }
