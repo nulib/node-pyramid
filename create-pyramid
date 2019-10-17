@@ -1,4 +1,4 @@
 #!/bin/bash
 
 echo $@
-/usr/local/bin/node ./index.js $@
+/usr/local/bin/node ./queue.js $@

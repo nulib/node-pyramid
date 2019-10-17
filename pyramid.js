@@ -11,7 +11,7 @@ function createPyramidTiff(source, dest) {
       makeInputFile(source)
         .catch(err => reject(err))
         .then(inFile => {
-          console.log(`Creating pyramidal TIFF from ${inFile}`)
+          console.error(`Creating pyramidal TIFF from ${inFile}`)
           Sharp(inFile)
             .limitInputPixels(false)
             .resize({ width: 15000, height: 15000, fit: 'inside', withoutEnlargement: true })
@@ -23,8 +23,8 @@ function createPyramidTiff(source, dest) {
                 .catch(err => reject(err))
             )
             .finally(() => {
-              console.log(`Deleting ${inFile}`)
-              fs.unlink(inFile, (err) => {if (err) { console.log(err) }});
+              console.error(`Deleting ${inFile}`)
+              fs.unlink(inFile, (err) => {if (err) { console.error(err) }});
             });
         });
     } catch(err) {
@@ -39,7 +39,7 @@ function makeInputFile(location) {
     if (uri.scheme == 's3') {
       var s3Key = uri.path.replace(/^\/+/, '');
       var fileName = tempy.file();
-      console.log(`Retrieving ${location} to ${fileName}`);
+      console.error(`Retrieving ${location} to ${fileName}`);
       var writable = fs.createWriteStream(fileName)
         .on('error', (err) => reject(err));
       new AWS.S3().getObject({
@@ -57,7 +57,7 @@ function makeInputFile(location) {
 }
 
 function sendToDestination(data, location) {
-  console.log(`Writing to ${location}`);
+  console.error(`Writing to ${location}`);
   return new Promise((resolve, reject) => {
     var uri = URI.parse(location);
     if (uri.scheme == 's3') {
