@@ -1,4 +1,4 @@
-FROM       node:13-buster-slim
+FROM       node:13-alpine
 USER       node
 WORKDIR    /home/node
 COPY       --chown=node:node package.json yarn.lock /home/node/
